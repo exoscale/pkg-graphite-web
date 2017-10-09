@@ -1,0 +1,18 @@
+graphite-build-search-index(1) -- create search index for Graphite Webapp
+=========================================================================
+
+## SYNOPSIS
+
+graphite-build-search-index
+
+## DESCRIPTION
+
+This script creates the search index of Whisper files for the Graphite Webapp.
+It will run as hourly cronjob. You don't need to run this command manual except
+you want to force generating the search index.
+
+## AUTHOR
+
+Jonas Genannt
+
+This manual page was written by Jonas Genannt <jonas.genannt@capi2name.de> for the Debian Project.

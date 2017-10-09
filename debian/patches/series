@@ -1,0 +1,4 @@
+local_settings.patch
+settings_debian.patch
+remove_thirdparty_modules.patch
+remove_internal_logrotate.patch

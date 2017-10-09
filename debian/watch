@@ -1,0 +1,3 @@
+version=3
+opts=dversionmangle=s/\+debian// \
+http://pypi.debian.net/graphite-web/graphite-web-(.+)\.(?:zip|tgz|tbz|txz|(?:tar\.(?:gz|bz2|xz)))

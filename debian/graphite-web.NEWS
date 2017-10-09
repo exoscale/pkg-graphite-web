@@ -1,0 +1,19 @@
+graphite-web (0.9.12+debian-6) unstable; urgency=medium
+
+    Graphlot feature was removed.
+    https://github.com/graphite-project/graphite-web/issues/789
+
+    Upstream has removed Graphlot feature, was broken in Debian,
+    and there are better ways to do this.
+
+ -- Jonas Genannt <jonas.genannt@capi2name.de>  Wed, 03 Sep 2014 19:25:55 +0200
+
+graphite-web (0.9.12+debian-1) unstable; urgency=high
+
+    Django requires a SECRET_KEY for every django application.
+    You need to create an secrect key and insert it into the
+    Graphite Web configuration in /etc/graphite/local_settings.py.
+    
+    https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
+
+ -- Jonas Genannt <jonas.genannt@capi2name.de>  Sun, 01 Sep 2013 13:32:18 +0200

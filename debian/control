@@ -1,0 +1,42 @@
+Source: graphite-web
+Section: web
+Priority: extra
+Maintainer: Debian Graphite Group <pkg-graphite-maint@lists.alioth.debian.org>
+Uploaders: Jonas Genannt <genannt@debian.org>,
+ Mathieu Parent <sathieu@debian.org>
+Build-Depends: debhelper (>= 9), python-all, dh-python
+Standards-Version: 3.9.6
+Homepage: https://github.com/graphite-project/graphite-web/
+Vcs-Git: git://anonscm.debian.org/pkg-graphite/packages/graphite-web.git
+Vcs-Browser: http://anonscm.debian.org/gitweb?p=pkg-graphite/packages/graphite-web.git;a=summary
+X-Python-Version: >=2.6
+
+Package: graphite-web
+Architecture: all
+Depends: ${misc:Depends}, ${python:Depends},
+ adduser,
+ python-cairo,
+ python-django (>> 1.6-1~),
+ python-simplejson,
+ python-django-tagging (>> 1:0.4-1~),
+ python-tz,
+ python-pyparsing,
+ libjs-scriptaculous,
+ libjs-prototype,
+ python-whisper (>> 0.9.15-1~)
+Suggests: python-memcache,
+ libapache2-mod-wsgi,
+ python-ldap,
+ python-mysqldb,
+ graphite-carbon
+Description: Enterprise Scalable Realtime Graphing
+ Graphite consists of a storage backend and a web-based visualization
+ frontend. Client applications send streams of numeric time-series
+ data to the Graphite backend (called carbon), where it gets stored in
+ fixed-size database files similar in design to RRD. The web frontend
+ provides 2 distinct user interfaces for visualizing this data in
+ graphs as well as a simple URL-based API for direct graph generation.
+ .
+ Graphite's design is focused on providing simple interfaces (both to
+ users and applications), real-time visualization, high-availability,
+ and enterprise scalability.

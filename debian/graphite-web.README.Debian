@@ -1,0 +1,65 @@
+Debian graphite-web
+-------------------
+
+Graphite Webinterface should run as user `_graphite`.
+
+For testing Graphite, you can start Graphite with the Django lightweight Web
+server for development:
+
+# su -s /bin/bash -c '/usr/bin/django-admin runserver --settings \
+ graphite.settings 0.0.0.0:8080' _graphite
+
+The Django runserver is not recommend for production use!
+
+You can choose any Django compatible Webserver. Upstream recommends Apache.
+
+A WSGI file for Apache is included at /usr/share/graphite-web/graphite.wsgi.
+
+The Apache configuration example is included into the graphite-web package:
+
+	/usr/share/graphite-web/apache2-graphite.conf
+
+
+The Django `manage.py` is available via `graphite-manage` command.
+
+The default configurations that is shipped with the graphite-web package is
+using an sqlite database.
+
+To create an sqlite database, schemas and default user run:
+
+# graphite-manage syncdb
+
+Change the owner of graphite.db to _graphite:
+
+# chown _graphite:_graphite /var/lib/graphite/graphite.db
+
+
+Quick manual to use Graphite with Apache:
+-----------------------------------------
+
+# Install Apache module wsgi:
+apt-get install libapache2-mod-wsgi apache2
+
+# enable wsgi
+a2enmod wsgi
+
+# copy default Apache configuration:
+cp /usr/share/graphite-web/apache2-graphite.conf \
+  /etc/apache2/sites-available/graphite-web.conf
+
+# enable graphite-web
+a2ensite graphite-web
+
+# restart Apache
+service apache2 restart
+
+
+Graphite with MySQL:
+-------------------
+
+You can use Graphite also with MySQL. You need to edit the configuration in
+/etc/graphite/local_setting.py and install the Python MySQLDB module
+(python-mysqldb). After configuration and installing python-mysqldb use
+graphite-manage syncdb to create the schema.
+
+ -- Jonas Genannt <jonas.genannt@capi2name.de>  Mon, 03 Dec 2012 21:04:05 +0100

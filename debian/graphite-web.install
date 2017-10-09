@@ -1,0 +1,4 @@
+debian/graphite.wsgi usr/share/graphite-web
+debian/bin/graphite-build-search-index usr/bin
+debian/bin/graphite-manage usr/bin
+debian/apache2-graphite.conf usr/share/graphite-web

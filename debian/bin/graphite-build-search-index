@@ -1,0 +1,20 @@
+#!/bin/sh
+# Jonas Genannt <jonas.genannt@capi2name.de>, 2012 for the Debian Project
+
+set -e
+
+INDEX_FILE_TMP=$(mktemp)
+
+INDEX_FILE="/var/lib/graphite/search_index"
+WHISPER_DIR="/var/lib/graphite/whisper"
+
+
+cd ${WHISPER_DIR} && find -L . -name '*.wsp' | sed \
+	-e 's@\.wsp$@@' \
+	-e 's@^\./@@' \
+	-e 's@/@.@g' > ${INDEX_FILE_TMP}
+
+chmod 0640 ${INDEX_FILE_TMP}
+
+mv -f ${INDEX_FILE_TMP} ${INDEX_FILE}
+chown _graphite:_graphite ${INDEX_FILE}

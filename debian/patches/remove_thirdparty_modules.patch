@@ -1,0 +1,42 @@
+Description: do not install thirdparty module removed by Debian
+Author: Jonas Genannt <genannt@debian.org>
+Forwarded: yes
+Bug: https://github.com/graphite-project/graphite-web/pull/104
+Bug: https://bugs.launchpad.net/graphite/+bug/1077338
+
+diff --git a/setup.py b/setup.py
+index 676eb96..f2f2c2d 100644
+--- a/setup.py
++++ b/setup.py
+@@ -81,8 +81,6 @@ try:
+         'graphite.dashboard',
+         'graphite.events',
+         'graphite.version',
+-        'graphite.thirdparty',
+-        'graphite.thirdparty.pytz',
+       ],
+       package_data={'graphite' :
+         ['templates/*', 'local_settings.py.example']},
+diff --git a/webapp/graphite/cli/parser.py b/webapp/graphite/cli/parser.py
+index ec1a435..7d7d48d 100644
+--- a/webapp/graphite/cli/parser.py
++++ b/webapp/graphite/cli/parser.py
+@@ -12,7 +12,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License."""
+ 
+-from graphite.thirdparty.pyparsing import *
++from pyparsing import *
+ 
+ grammar = Forward()
+ 
+diff --git a/webapp/graphite/render/grammar.py b/webapp/graphite/render/grammar.py
+index 07e3e4b..2b0ba41 100644
+--- a/webapp/graphite/render/grammar.py
++++ b/webapp/graphite/render/grammar.py
+@@ -1,4 +1,4 @@
+-from graphite.thirdparty.pyparsing import *
++from pyparsing import *
+ 
+ ParserElement.enablePackrat()
+ grammar = Forward()

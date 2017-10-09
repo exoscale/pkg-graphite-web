@@ -1,0 +1,24 @@
+graphite-web source for Debian
+------------------------------
+
+The included thirdparty python libraries are removed:
+
+ # rm -rf webapp/graphite/thirdparty
+
+See: https://bugs.launchpad.net/graphite/+bug/1077338
+
+The included *.swf files are removed, source missing:
+
+ # rm webapp/content/js/ext/resources/*.swf
+
+# Removed examples/ directory from ExtJS, Icons not needed, CC-BY-3.0
+
+ # rm -rf webapp/content/js/ext/examples
+
+The included JS files are removed and symlink to Debian JS packages:
+
+ # rm webapp/content/js/window/prototype.js
+ # rm -r webapp/content/js/scriptaculous
+ # rm webapp/content/js/window/effects.js
+
+ -- Jonas Genannt <jonas.genannt@capi2name.de>  Sat, 09 Mar 2013 15:55:45 +0100

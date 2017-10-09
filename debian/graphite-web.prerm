@@ -1,0 +1,14 @@
+#!/bin/sh
+
+set -e
+
+if [ "$1" = "remove" ]; then
+	rm -f /etc/graphite/*.pyc
+	rm -f /var/lib/graphite/search_index
+	rm -rf /var/lib/graphite/.fontconfig
+fi
+
+#DEBHELPER#
+
+exit 0
+

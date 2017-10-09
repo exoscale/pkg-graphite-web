@@ -1,0 +1,3 @@
+conf/graphTemplates.conf.example
+conf/dashboard.conf.example
+webapp/graphite/local_settings.py.example

@@ -1,0 +1,56 @@
+#!/usr/bin/make -f
+
+export PYBUILD_NAME = graphite
+export PYBUILD_INSTALL_ARGS_python2=--prefix=/usr --install-lib={install_dir}
+
+%:
+	dh $@ --with python2 --buildsystem=pybuild
+
+check_embedded_libs:
+	@if [ -f webapp/graphite/thirdparty \
+	    -o -f "webapp/content/js/ext/resources/*.swf" \
+	    -o -f "webapp/content/js/ext/examples" \
+	    -o -f "webapp/content/js/jquery.js" \
+	    -o -f "webapp/content/js/window/prototype.js" \
+	    -o -f "webapp/content/js/scriptaculous" \
+	    -o -f "webapp/content/js/window/effects.js" \
+	    -o -f "webapp/content/js/jquery.flot.crosshair.js" \
+	    -o -f "webapp/content/js/jquery.flot.js" \
+	    -o -f "webapp/content/js/jquery.flot.selection.js" \
+	      ] ; \
+	then \
+	      echo " *****************************************"; \
+	      echo " **                                     **"; \
+	      echo " **  tar contains embedded libraries !  **"; \
+	      echo " **                                     **"; \
+	      echo " *****************************************"; \
+	      echo "Read README.source to correct this."; \
+	      echo ""; \
+	      exit 1; \
+	fi
+
+override_dh_prep: check_embedded_libs
+	dh_prep
+
+override_dh_installcron:
+	dh_installcron --name=graphite_build_search_index
+
+override_dh_compress:
+	dh_compress -Xlocal_settings.py.example
+
+override_dh_install:
+	# clean unneeded stuff
+	rm -rf debian/graphite-web/usr/conf
+	rm -rf debian/graphite-web/usr/storage
+	rm -rf debian/graphite-web/usr/bin
+	rm -rf debian/graphite-web/usr/examples
+	mkdir -p debian/graphite-web/usr/share/graphite-web
+	find debian/graphite-web/usr/webapp -type f | xargs -r chmod 644
+	mv debian/graphite-web/usr/webapp/content debian/graphite-web/usr/share/graphite-web/static
+	rmdir debian/graphite-web/usr/webapp
+	find debian/graphite-web/usr -name local_settings.py.example | xargs -r rm -f
+	rm -f debian/graphite-web/usr/share/graphite-web/static/js/ext/license.txt
+	rm -f debian/graphite-web/usr/share/graphite-web/static/js/ext/resources/css/README.txt
+	dh_install
+	cp webapp/graphite/local_settings.py.example debian/graphite-web/etc/graphite/local_settings.py
+	rm -rf debian/graphite-web/usr/share/graphite-web/static/js/ext/adapter/.DS_Store

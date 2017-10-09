@@ -1,0 +1,129 @@
+graphite-web (0.9.15+debian-1) unstable; urgency=medium
+
+  * Team upload.
+  * Imported Upstream version 0.9.15+debian
+  * d/copyright: updated copyright year
+  * d/p/settings_debian: refreshed patch
+  * d/p/remove_thirdparty_modules: refreshed patch
+  * d/control:
+    - added Python-Version flag
+    - added dh-python
+    - added Version dependency
+  * removed disable_install_opt.patch
+  * d/rules: switched to pybuild
+  * Updated README.Debian
+
+ -- Jonas Genannt <genannt@debian.org>  Sat, 28 Nov 2015 17:23:48 +0100
+
+graphite-web (0.9.13+debian-1) unstable; urgency=medium
+
+  * Team upload.
+  * Imported Upstream version 0.9.13+debian (Closes: #784441)
+  * d/watch: updated watch file to pypi.debian.net service
+  * d/control:
+    - removed jquery depends; jquery was removed from Graphite
+    - updated my email address
+    - bumped standards version to 3.9.6 (no changes needed)
+  * d/README.source: updated for new upstream release
+  * patches removed, included by upstream:
+    - add_maximum_returned_datapoints.patch
+    - remove_graphlot.patch
+    - django17.patch
+    - django1.6_compatibility.patch
+  * patches refreshed for new upstream version:
+    - settings_debian.patch: refreshed
+    - remove_thirdparty_modules.patch: refreshed
+  * d/copyright: updated years and copyright
+  * d/rules: remove included DS_Store file
+  * d/graphite-web.links: removed jquery links
+
+ -- Jonas Genannt <genannt@debian.org>  Mon, 25 May 2015 15:54:10 +0200
+
+graphite-web (0.9.12+debian-7) unstable; urgency=low
+
+  * added patch for maxDataPoints in json format
+    huge performance impact for dashboards like grafana (Closes: #775783)
+
+ -- Jonas Genannt <jonas.genannt@capi2name.de>  Thu, 29 Jan 2015 12:36:30 +0100
+
+graphite-web (0.9.12+debian-6) unstable; urgency=medium
+
+  [ Vincent Bernat ]
+  * d/postinst: fix directory creation
+
+  [ Jonas Genannt ]
+  * added patch to remove Graphlot feature
+    Graphlot feature was broken in Debian. Upstream
+    removed Graphlot feature.
+
+ -- Jonas Genannt <jonas.genannt@capi2name.de>  Wed, 03 Sep 2014 19:25:55 +0200
+
+graphite-web (0.9.12+debian-5) unstable; urgency=low
+
+  * Team upload.
+  * Graphite works now with Django 1.6 and 1.7 (Closes: #755638)
+  * d/README.Debian: use service to restart apache
+
+ -- Jonas Genannt <jonas.genannt@capi2name.de>  Fri, 15 Aug 2014 18:34:55 +0200
+
+graphite-web (0.9.12+debian-4) unstable; urgency=medium
+
+  * added missing sources of extjs and ace (Closes: #744708)
+
+ -- Jonas Genannt <jonas.genannt@capi2name.de>  Mon, 28 Jul 2014 15:52:22 +0200
+
+graphite-web (0.9.12+debian-3) unstable; urgency=low
+
+  * d/control: removed python-sqlite from depends (Closes: #739517)
+
+ -- Jonas Genannt <jonas.genannt@capi2name.de>  Sat, 22 Feb 2014 17:04:47 +0100
+
+graphite-web (0.9.12+debian-2) unstable; urgency=low
+
+  [ Bernhard Schmidt ]
+  * Import upstream patch to fix Django 1.6 compatibility
+  * drop part about webapp/graphite/manage.py from patch, included upstream
+  * changelog
+  * graphite-manage: fix Django 1.6 compatibility (Closes: #729854)
+
+  [ Jonas Genannt ]
+  * d/control:
+    - bumped standards version
+    - added version depend to python-django >> 1.6-1~
+
+ -- Jonas Genannt <jonas.genannt@capi2name.de>  Mon, 25 Nov 2013 21:37:19 +0100
+
+graphite-web (0.9.12+debian-1) unstable; urgency=high
+
+  * New Upstream Version (Closes: #720454, #721085)
+    - Security fix included: CVE-2013-5093
+  * refreshed patches against new version
+  * d/control: updated Homepage field
+  * d/control: added version depend on python-django-tagging
+    since pyhton-django-taggit mistake
+  * d/copyright: added Copyright section for ace
+  * Added NEWS file
+
+ -- Jonas Genannt <jonas.genannt@capi2name.de>  Sun, 01 Sep 2013 21:30:47 +0200
+
+graphite-web (0.9.10+debian-2) unstable; urgency=low
+
+  [ Marcelo Jorge Vieira ]
+  * libjs-flot was renamed to libjs-jquery-flot (Closes: #710452)
+
+  [ Jonas Genannt ]
+  * run cronjob only if binary is available (Closes: #705976)
+  * changed git to anonscm.debian.org as recommended by lintian
+
+  [ Mathieu Parent ]
+  * gbp.conf: Build to build-area
+  * gbp.conf: Set pristine-tar to true
+  * d/rules: Check for embedded libraries
+
+ -- Mathieu Parent <sathieu@debian.org>  Mon, 10 Jun 2013 18:17:39 +0200
+
+graphite-web (0.9.10+debian-1) unstable; urgency=low
+
+  * Initial release. (Closes: #659632)
+
+ -- Jonas Genannt <jonas.genannt@capi2name.de>  Sat, 09 Mar 2013 16:06:34 +0100

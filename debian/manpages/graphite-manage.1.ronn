@@ -1,0 +1,23 @@
+graphite-manage(1) -- manage.py wrapper for the Graphite Webapp
+=========================================================================
+
+## SYNOPSIS
+
+graphite-manage
+
+## DESCRIPTION
+
+graphite-manage is an wrapper script to access Django manage.py for the Graphite Webapp.
+
+See `graphite-manage --help` for complete help.
+
+To create an new sqlite database and an superuser do:
+
+ - graphite-manage syncdb
+ - chown \_graphite:\_graphite /var/lib/graphite/graphite.db
+
+## AUTHOR
+
+Jonas Genannt
+
+This manual page was written by Jonas Genannt <jonas.genannt@capi2name.de> for the Debian Project.
