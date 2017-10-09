@@ -2,3 +2,4 @@ local_settings.patch
 settings_debian.patch
 remove_thirdparty_modules.patch
 remove_internal_logrotate.patch
+44524016474cbdf6d71afb9eb105dea07766d741.patch

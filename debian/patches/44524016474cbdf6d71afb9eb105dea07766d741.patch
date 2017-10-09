@@ -1,0 +1,66 @@
+From 44524016474cbdf6d71afb9eb105dea07766d741 Mon Sep 17 00:00:00 2001
+From: Michael Leinartas <mleinartas@gmail.com>
+Date: Sat, 6 Apr 2013 23:36:59 -0500
+Subject: [PATCH] Fix mostDeviant to conform with function signatures
+
+---
+ webapp/content/js/composer_widgets.js | 6 +-----
+ webapp/content/js/dashboard.js        | 6 +-----
+ webapp/graphite/render/functions.py   | 8 ++++----
+ 3 files changed, 6 insertions(+), 14 deletions(-)
+
+diff --git a/webapp/content/js/composer_widgets.js b/webapp/content/js/composer_widgets.js
+index 2cc7e58cb..a46e2b5ac 100644
+--- a/webapp/content/js/composer_widgets.js
++++ b/webapp/content/js/composer_widgets.js
+@@ -576,11 +576,7 @@ var GraphDataWindow = {
+           var newTarget;
+ 
+           if (extraArg) {
+-            if (funcName == 'mostDeviant') { //SPECIAL CASE HACK
+-              newTarget = funcName + '(' + extraArg + ',' + target + ')';
+-            } else {
+-              newTarget = funcName + '(' + target + ',' + extraArg + ')';
+-            }
++            newTarget = funcName + '(' + target + ',' + extraArg + ')';
+           } else {
+             newTarget = funcName + '(' + target + ')';
+           }
+diff --git a/webapp/content/js/dashboard.js b/webapp/content/js/dashboard.js
+index ede2d6136..b488ba362 100644
+--- a/webapp/content/js/dashboard.js
++++ b/webapp/content/js/dashboard.js
+@@ -2751,11 +2751,7 @@ function applyFuncToEach(funcName, extraArg) {
+         removeTargetFromSelectedGraph(target);
+ 
+         if (extraArg) {
+-          if (funcName == 'mostDeviant') { //SPECIAL CASE HACK
+-            newTarget = funcName + '(' + extraArg + ',' + target + ')';
+-          } else {
+-            newTarget = funcName + '(' + target + ',' + extraArg + ')';
+-          }
++          newTarget = funcName + '(' + target + ',' + extraArg + ')';
+         } else {
+           newTarget = funcName + '(' + target + ')';
+         }
+diff --git a/webapp/graphite/render/functions.py b/webapp/graphite/render/functions.py
+index b0fce4bea..e29c5771f 100644
+--- a/webapp/graphite/render/functions.py
++++ b/webapp/graphite/render/functions.py
+@@ -1633,12 +1633,12 @@ def useSeriesAbove(requestContext, seriesList, value, search, replace):
+ 
+   return newSeries
+ 
+-def mostDeviant(requestContext, n, seriesList):
++def mostDeviant(requestContext, seriesList, n):
+   """
+-  Takes an integer N followed by one metric or a wildcard seriesList.
++  Takes one metric or a wildcard seriesList followed by an integer N.
+   Draws the N most deviant metrics.
+-  To find the deviant, the average across all metrics passed is determined,
+-  and then the average of each metric is compared to the overall average.
++  To find the deviants, the standard deviation (sigma) of each series
++  is taken and ranked. The top N standard deviations are returned.
+ 
+     Example:
+ 

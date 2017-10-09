@@ -1,3 +1,9 @@
+graphite-web (0.9.15+debian-1+exo2) xenial; urgency=medium
+
+  * Patch mostDeviant function to conform with function signatures.
+
+ -- Vincent Bernat <bernat@debian.org>  Mon, 09 Oct 2017 14:11:05 +0200
+
 graphite-web (0.9.15+debian-1) unstable; urgency=medium
 
   * Team upload.
